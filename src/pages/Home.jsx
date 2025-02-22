@@ -74,6 +74,35 @@ function Home() {
                   </div>
               </div>
           </div>
+        {/*  section */}
+        <div className='relative pt-4 flex sm:flex-row flex-col gap-4 items-center justify-center'>
+            <CummonButton button_text={"Explore Full Catalog"} icon={<FaArrowRight />} active={true} linked_to={"/"}/>
+            <CummonButton button_text={"Learn More"} active={false} linked_to={"/"}/>
+        </div>
+        {/*  section */}
+        <div className='py-8'>
+          <div className='p-6 sm:px-[13%] text-white flex sm:flex-row flex-col justify-center gap-14'>
+              <div className='pb-4 sm:w-[50%] text-3xl font-semibold'>Get the skills you need for a <HighlightedText text={"job that is in demand."} /></div>
+              <div className='sm:w-[50%] flex flex-col'>
+                  <div className='text-white pb-4'>
+                      The modern StudyNotion is the dictates its own terms. Today, to be a competitive specialist requires more than professional skills.
+                  </div>
+                  <CummonButton button_text={"Learn More"} active={true} linked_to={"/"} />
+              </div>
+          </div>
+          <div>
+            <div>
+                <div className='text-white'>
+                    <div>icon</div>
+                    <div>
+                        <h3>heading</h3>
+                        <p>abcdefghi</p>
+                    </div>
+                </div>
+            </div>
+            <div></div>
+          </div>
+        </div>
     </div>
   )
 }
