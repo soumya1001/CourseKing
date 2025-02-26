@@ -5,6 +5,7 @@ import CummonButton from '../components/core/homepage/CummonButton';
 import vBanner from '../assets/Images/banner.mp4'
 import HighlightedText from '../components/core/homepage/HighlightedText';
 import CodeBlock from '../components/core/homepage/CodeBlock';
+import TimelineSection from '../components/core/homepage/TimelineSection';
 function Home() {
   return (
     <div>
@@ -43,7 +44,7 @@ function Home() {
                 <p className='text-richblack-200'>
                     Our courses are designed and taught by industry experts who have years of experience in coding and are passionate about sharing their knowledge with you.
                 </p>
-                <div className='pt-4 flex sm:flex-row flex-col gap-4'>
+                <div className='pt-4 flex flex-row gap-4 justify-center sm:justify-start'>
                     <CummonButton button_text={"Try it Yourself"} active={true} linked_to={"/"} />
                     <CummonButton button_text={"Learn More"} active={false} linked_to={"/"} />
                 </div>
@@ -68,39 +69,35 @@ function Home() {
                   <p className='text-richblack-200'>
                   Go ahead, give it a try. Our hands-on learning environment means you'll be writing real code from your very first lesson.
                   </p>
-                  <div className='pt-4 flex sm:flex-row flex-col gap-4'>
+                  <div className='pt-4 flex flex-row gap-4 justify-center sm:justify-start'>
                       <CummonButton button_text={"Continue Lession"} active={true} linked_to={"/"} />
                       <CummonButton button_text={"Learn More"} active={false} linked_to={"/"} />
                   </div>
               </div>
           </div>
         {/*  section */}
-        <div className='relative pt-4 flex sm:flex-row flex-col gap-4 items-center justify-center'>
-            <CummonButton button_text={"Explore Full Catalog"} icon={<FaArrowRight />} active={true} linked_to={"/"}/>
-            <CummonButton button_text={"Learn More"} active={false} linked_to={"/"}/>
-        </div>
+          <div className='bg-pure-greys-5 text-richblack-700'>
+              <div className='homepage_bg h-[300px]'>
+                  <div className='h-[300px] text-richblack-700 relative pt-4 flex flex-row gap-4 items-center justify-center'>
+                      <CummonButton button_text={"Explore Full Catalog"} icon={<FaArrowRight />} active={true} linked_to={"/"} />
+                      <CummonButton button_text={"Learn More"} active={false} linked_to={"/"} />
+                  </div>
+              </div>
+          </div>
+
         {/*  section */}
-        <div className='py-8'>
-          <div className='p-6 sm:px-[13%] text-white flex sm:flex-row flex-col justify-center gap-14'>
+        <div className='bg-pure-greys-5 text-richblack-700 py-8 p-2 sm:px-[13%]'>
+          <div className='flex sm:flex-row flex-col justify-center sm:gap-14'>
               <div className='pb-4 sm:w-[50%] text-3xl font-semibold'>Get the skills you need for a <HighlightedText text={"job that is in demand."} /></div>
               <div className='sm:w-[50%] flex flex-col'>
-                  <div className='text-white pb-4'>
+                  <div className='pb-4'>
                       The modern StudyNotion is the dictates its own terms. Today, to be a competitive specialist requires more than professional skills.
                   </div>
                   <CummonButton button_text={"Learn More"} active={true} linked_to={"/"} />
               </div>
           </div>
           <div>
-            <div>
-                <div className='text-white'>
-                    <div>icon</div>
-                    <div>
-                        <h3>heading</h3>
-                        <p>abcdefghi</p>
-                    </div>
-                </div>
-            </div>
-            <div></div>
+                <TimelineSection/>
           </div>
         </div>
     </div>
