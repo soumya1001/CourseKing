@@ -78,11 +78,9 @@ function Home() {
             </div>
         </div>
         <UnlockThePowerOfCode/>
-
-        {/*  section 4*/}
           <div className='bg-pure-greys-5 text-richblack-700'>
-              <div className='homepage_bg h-[300px]'>
-                  <div className='h-[300px] text-richblack-700 relative pt-4 flex flex-row gap-4 items-center justify-center'>
+              <div className='homepage_bg sm:h-[300px] h-[100px]'>
+                  <div className='sm:h-[300px] h-[100px] text-richblack-700 relative sm:pt-40 md:pt-40 lg:pt-4 pt-0 flex flex-row gap-4 items-center justify-center'>
                       <CummonButton button_text={"Explore Full Catalog"} icon={<FaArrowRight />} active={true} linked_to={"/"} />
                       <CummonButton button_text={"Learn More"} active={false} linked_to={"/"} />
                   </div>
@@ -110,7 +108,7 @@ function Home() {
                 <div className='text-3xl font-semibold'>
                     Your swiss knife for <HighlightedText text={"learning any language"} />
                 </div>
-                <p className='w-[70%] text-center'>
+                <p className='sm:w-[70%] sm:text-center'>
                     Using spin making learning multiple languages easy. with 20+ languages realistic voice-over, progress tracking, custom schedule and more.
                 </p>
             </div>
