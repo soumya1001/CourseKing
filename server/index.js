@@ -1,6 +1,6 @@
 const express = require("express");
 const app = express();
-
+const morgan = require('morgan')
 const userRoutes = require("./routes/User");
 const profileRoutes = require("./routes/Profile");
 const paymentRoutes = require("./routes/Payments");
@@ -23,7 +23,7 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(
 	cors({
-		origin:"http://localhost:3000",
+		origin: process.env.REACT_APP_BASE_URL,
 		credentials:true,
 	})
 )
@@ -37,6 +37,7 @@ app.use(
 //cloudinary connection
 cloudinaryConnect();
 
+app.use(morgan('dev'));
 //routes
 app.use("/api/v1/auth", userRoutes);
 app.use("/api/v1/profile", profileRoutes);
@@ -52,7 +53,6 @@ app.get("/", (req, res) => {
 		message:'Your server is up and running....'
 	});
 });
-
 app.listen(PORT,()=>{
     console.log("http://localhost:"+PORT);
 })
