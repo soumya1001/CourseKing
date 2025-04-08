@@ -31,7 +31,7 @@ function Navbar() {
   return (
     <div className='border-b-2 border-richblack-600 h-12'>
       <div className='sm:px-[13%] text-white flex flex-row justify-between items-center'>
-        <Link to={"/"}><img src={Logo} alt="CourseKing Logo" /></Link>
+        <Link to={"/"}><img className=' h-fit' src={Logo} alt="CourseKing Logo" /></Link>
         <nav>
           <ul className='flex flex-row gap-4 z-100'>
             {
@@ -39,17 +39,19 @@ function Navbar() {
                 <li key={i}>
                   {
                     e?.path ? 
-                    <Link className={`${checkPath(e?.path)?"text-yellow-25" : "" }`} to={e?.path}>{e?.title}</Link>
+                    <Link className={`${checkPath(e?.path)?"text-yellow-25 font-semibold" : "" }`} to={e?.path}>{e?.title}</Link>
                     : e?.title === "Catalog" ? (
-                      <div className='relative flex items-center gap-1 group'>
-                        <p>{e?.title}</p><MdKeyboardArrowDown/>
-                        <div className='invisible absolute flex flex-col rounded-md bg-richblack-5 p-2 text-richblack-900 opacity-1 transition-all duration-200 translate-y-[70px] translate-x-[-70px] w-[150px] group-hover:visible'>
-                          <p>Python</p>
-                          <p>Java</p>
-                          <p>React</p>
-                        </div>
+                        <div className='relative flex items-center gap-1 group z-50'>
+                          <p>{e?.title}</p><MdKeyboardArrowDown />
+                          <div className='invisible absolute left-[50%] translate-x-[-50%] translate-y-[30px] top-[50%] flex flex-col rounded-md bg-richblack-5 p-2 text-richblack-900 transition-all duration-200 group-hover:visible sm:min-w-[150px]'>
+                            <div className='absolute left-[50%] top-0 translate-x-[80%] translate-y-[-35%] h-6 w-6 rotate-45 rounded bg-richblack-5'>
+                            </div>
+                            <p>Python</p>
+                            <p>Java</p>
+                            <p>React</p>
+                          </div>
 
-                      </div>
+                        </div>
                     ) : ""
                   }
                 </li>
@@ -59,7 +61,7 @@ function Navbar() {
         </nav>
         <div className='flex flex-row gap-x-4 items-center'>
           {
-            user && user?.accountType != "Instructor" && (
+            user && user?.accountType !== "Instructor" && (
               <Link to={"/dashboard/cart"}>
                 <CiShoppingCart />
                 {

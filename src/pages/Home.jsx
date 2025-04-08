@@ -13,8 +13,8 @@ function Home() {
     <div>
         {/* section 1 */}
         <div className='relative flex flex-col mx-auto items-center text-white justify-between gap-4'>
-            <Link to={"/signup"}>
-            <div className='group mt-16 p-1 mx-auto rounded-full font-bold bg-richblack-800 text-richblack-200 transition-all duration-200 w-fit hover:scale-95'>
+            <Link to={"/signup"} className='mt-12'>
+            <div className='group p-1 mx-auto rounded-full font-bold bg-richblack-800 text-richblack-200 transition-all duration-200 w-fit hover:scale-95'>
                 <div className='group-hover:bg-richblack-900 flex flex-row items-center gap-2 rounded-full px-3 py-1'>
                     <p className=''>Become an Instractor</p>
                     <FaArrowRight />
