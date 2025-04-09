@@ -4,10 +4,10 @@ import SignupForm from '../auth/SignupForm'
 import LoginForm from '../auth/LoginForm'
 function Template({title,description1,description2,image,formType}) {
   return (
-    <div className='flex flex-col sm:flex-row justify-between gap-10 py-8 sm:px-[13%] text-white'>
+    <div className='flex flex-col sm:flex-row justify-between gap-10 pt-8 sm:px-[13%] text-white'>
       <div className='sm:w-[40%] p-2 px-4'>
           <h1 className='font-semibold text-3xl'>{title}</h1>
-          <h2 className='py-2 text-sm text-richblack-200'>{description1} {description2}</h2>
+          <h2 className='py-2 mb-1 text-sx text-richblack-200'>{description1} {description2}</h2>
           {formType === "signup" ? <SignupForm/> : <LoginForm/>}
       </div>
       <div className='relative sm:w-[50%]'>
