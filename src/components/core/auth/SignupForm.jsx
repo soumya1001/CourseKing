@@ -3,8 +3,11 @@ import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai"
 import Tab from '../../common/Tab'
 import {ACCOUNT_TYPE} from '../../../utils/constants'
 import { toast } from "react-hot-toast"
+import { sendOtp } from '../../../services/operations/authAPI'
+import { useNavigate } from 'react-router-dom'
 
 function SignupForm() {
+  const navigate = useNavigate()
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -41,6 +44,7 @@ function SignupForm() {
       accountType
     }
     console.log(signupData);
+    sendOtp(email,navigate)
   }
   return (
     <div className='text-white text-[15px]'>

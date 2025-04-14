@@ -23,10 +23,14 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(
 	cors({
-		origin: process.env.REACT_APP_BASE_URL,
+		origin: 'http://localhost:3000',
 		credentials:true,
 	})
 )
+// app.use((req, res, next) => {
+// 	console.log("Request Origin:", req.headers.origin);
+// 	next();
+//   });
 
 app.use(
 	fileUpload({
