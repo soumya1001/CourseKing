@@ -76,7 +76,7 @@ exports.resetPassword = async (req, res) => {
 			{ password: encryptedPassword },
 			{ new: true }
 		);
-		res.json({
+		return res.json({
 			success: true,
 			message: `Password Reset Successful`,
 		});
