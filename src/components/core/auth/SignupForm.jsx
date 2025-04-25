@@ -5,9 +5,12 @@ import {ACCOUNT_TYPE} from '../../../utils/constants'
 import { toast } from "react-hot-toast"
 import { sendOtp } from '../../../services/operations/authAPI'
 import { useNavigate } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
+import { setSignupData } from '../../../slice/authSlice'
 
 function SignupForm() {
   const navigate = useNavigate()
+  const dispatch = useDispatch()
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -17,13 +20,15 @@ function SignupForm() {
     password: "",
     confirmPassword: ""
   })
-  const {firstName,
+  const {
+    firstName,
     lastName,
     email,
     countryCode,
     phoneNumber,
     password,
-    confirmPassword} = formData
+    confirmPassword
+  } = formData
   const [accountType, setAccountType] = useState(ACCOUNT_TYPE.STUDENT)  //default set to student
   const [showPassword, setShowPassword] = useState(false)
   const [showConfirmPassword, setShowConfirmPassword] = useState(false)
@@ -43,8 +48,8 @@ function SignupForm() {
       ...formData,
       accountType
     }
-    console.log(signupData);
-    sendOtp(email,navigate)
+    dispatch(setSignupData(signupData))
+    dispatch(sendOtp(email,navigate)) 
   }
   return (
     <div className='text-white text-[15px]'>
@@ -53,25 +58,25 @@ function SignupForm() {
         <div className='flex flex-row gap-4'>
           <div>
             <label>First Name<span className="text-pink-400">*</span></label>
-            <input type="text" name="firstName" id="firstName" placeholder='Enter first name' required value={formData.firstName} onChange={handleOnChange}
+            <input type="text" name="firstName" id="firstName" placeholder='Enter first name'  value={formData.firstName} onChange={handleOnChange}
             className='mt-1 mb-1 w-full bg-richblack-800 py-[5px] px-[12px] border-b-[1px] border-b-richblack-200 rounded-md focus:outline-none'/>
           </div>
           <div>
             <label>Last Name<span className="text-pink-400">*</span></label>
-            <input type="text" name="lastName" id="lastName" placeholder='Enter last name' required value={formData.lastName} onChange={handleOnChange}
+            <input type="text" name="lastName" id="lastName" placeholder='Enter last name'  value={formData.lastName} onChange={handleOnChange}
             className='mt-1 mb-1 w-full bg-richblack-800 py-[5px] px-[12px] border-b-[1px] border-b-richblack-200 rounded-md focus:outline-none'/>
           </div>
         </div>
         <div >
             <label>Email<span className="text-pink-400">*</span></label>
-            <input type="email" name="email" id="email" placeholder='Enter email address' required value={formData.email} onChange={handleOnChange}
+            <input type="email" name="email" id="email" placeholder='Enter email address'  value={formData.email} onChange={handleOnChange}
             className='mt-1 mb-1 w-full bg-richblack-800 py-[5px] px-[12px] border-b-[1px] border-b-richblack-200 rounded-md focus:outline-none'/>
         </div>
         <div></div>
         <div className='flex flex-row gap-4'>
           <div className='relative'>
             <label>Create Password<span className="text-pink-400">*</span></label>
-            <input type={showPassword ? "text" : "password"} name="password" id="password" placeholder='Enter password' required value={formData.password} onChange={handleOnChange}
+            <input type={showPassword ? "text" : "password"} name="password" id="password" placeholder='Enter password'  value={formData.password} onChange={handleOnChange}
             className='mt-1 mb-1 w-full bg-richblack-800 py-[5px] px-[12px] border-b-[1px] border-b-richblack-200 rounded-md focus:outline-none'/>
             <span
               onClick={() => setShowPassword((prev) => !prev)}
@@ -86,7 +91,7 @@ function SignupForm() {
           </div>
           <div className='relative'>
             <label>Confirm Password<span className="text-pink-400">*</span></label>
-            <input type={showConfirmPassword ? "text" : "password"} name="confirmPassword" id="confirmPassword" placeholder='Enter password' required value={formData.confirmPassword} onChange={handleOnChange}
+            <input type={showConfirmPassword ? "text" : "password"} name="confirmPassword" id="confirmPassword" placeholder='Enter password'  value={formData.confirmPassword} onChange={handleOnChange}
             className='mt-1 mb-1 w-full bg-richblack-800 py-[5px] px-[12px] border-b-[1px] border-b-richblack-200 rounded-md focus:outline-none'/>
             <span
               onClick={() => setShowConfirmPassword((prev) => !prev)}

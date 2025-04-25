@@ -4,7 +4,7 @@ export const categories = {
     CATEGORIES_API : SERVER_URL+"/api/v1/course/showAllCategories"
 }
 // AUTH ENDPOINTS
-export const endpoints = {
+export const authEndpoints = {
     SENDOTP_API: SERVER_URL + "/api/v1/auth/sendotp",
     SIGNUP_API: SERVER_URL + "/api/v1/auth/signup",
     LOGIN_API: SERVER_URL + "/api/v1/auth/login",

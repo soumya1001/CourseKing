@@ -8,6 +8,7 @@ import CodeBlock from '../components/core/homepage/CodeBlock';
 import TimelineSection from '../components/core/homepage/TimelineSection';
 import instractorImage from "../assets/Images/Instructor.png"
 import UnlockThePowerOfCode from '../components/core/homepage/UnlockThePowerOfCode';
+import Footer from '../components/common/Footer';
 function Home() {
   return (
     <div>
@@ -144,6 +145,7 @@ function Home() {
 
             </div>
         </div>
+        <Footer/>
     </div>
   )
 }

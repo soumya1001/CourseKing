@@ -29,9 +29,9 @@ function Navbar() {
     return matchPath(path,location.pathname)
   }
   return (
-    <div className='border-b-2 border-richblack-600 h-12'>
+    <div className='border-b-2 border-richblack-600 py-1 bg-richblack-700'>
       <div className='sm:px-[13%] text-white flex flex-row justify-between items-center'>
-        <Link to={"/"}><img className=' h-fit' src={Logo} alt="CourseKing Logo" /></Link>
+        <Link to={"/"}><img className='object-contain' src={Logo} alt="CourseKing Logo" /></Link>
         <nav>
           <ul className='flex flex-row gap-4 z-100'>
             {
