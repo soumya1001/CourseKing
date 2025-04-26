@@ -1,11 +1,11 @@
 import { apiConnector } from "../apiConnector";
 import {toast} from "react-hot-toast";
-import {setLoading, setSignupData} from "../../slice/authSlice"
+import {setToken,setLoading, setSignupData} from "../../slice/authSlice"
 import {  authEndpoints} from "../apis";
 const {
   SENDOTP_API,
   SIGNUP_API,
-  // LOGIN_API,
+  LOGIN_API,
   // RESETPASSTOKEN_API,
   // RESETPASSWORD_API
 } = authEndpoints;
@@ -64,6 +64,34 @@ export function signUp(
     } catch (error) {
       const errorMessage =
       error.response?.data?.message || "Could not send OTP!";
+      toast.error(errorMessage, { id: toastId }); 
+    }
+  }
+}
+export function login(email,password,navigate){
+  return async(dispatch)=>{
+    const toastId = toast.loading("Loading...")
+    try {
+      const res = await apiConnector("POST",LOGIN_API,{
+        email,
+        password
+      })
+      // console.log("res",res);
+      
+      if(!res.data.success){
+        toast.error(res?.message || "Login Failed",{id:toastId})
+        throw new Error( res?.message || "Login Failed")
+      }
+      toast.success("Login Successful",{id:toastId})
+      dispatch(setToken(res.data.token))
+      localStorage.setItem("user", JSON.stringify(res.data.user))
+      navigate("/dashboard/my-profile")
+    } catch (error) {
+      console.log("res",error.response.data.message);
+      const errorMessage =
+      error.response?.data?.message || "Login Failed";
+      console.log(errorMessage);
+      
       toast.error(errorMessage, { id: toastId }); 
     }
   }
