@@ -5,6 +5,7 @@ import Login from "./pages/Login"
 import Navbar from "./components/common/Navbar";
 import Signup from "./pages/Signup";
 import VerifyEmail from "./pages/VerifyEmail";
+import ForgotPassword from "./pages/ForgotPassword";
 function App() {
   return (
    <div className="min-w-screen min-h-screen bg-richblack-900">
@@ -14,6 +15,7 @@ function App() {
       <Route path="/login" element={<Login/>}/>
       <Route path="/signup" element={<Signup/>}/>
       <Route path="/verify-email" element={<VerifyEmail/>}/>
+      <Route path="/forgot-password" element={<ForgotPassword/>}/>
     </Routes>
    </div>
   );

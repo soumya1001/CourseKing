@@ -6,11 +6,11 @@ const {
   SENDOTP_API,
   SIGNUP_API,
   LOGIN_API,
-  // RESETPASSTOKEN_API,
+  RESETPASSTOKEN_API,
   // RESETPASSWORD_API
 } = authEndpoints;
 //redux thunk
-export function sendOtp(email, navigate) {
+export function sendOtp(email, navigate,redirectPath = "/verify-email") {
   return async (dispatch) => {
     const toastId = toast.loading("Loading...");
     // dispatch(setLoading(true));
@@ -23,11 +23,13 @@ export function sendOtp(email, navigate) {
         throw new Error(res.data.message || "Could not send OTP!")
       }
       toast.success("OTP Sent Successfully", { id: toastId });
-      navigate("/verify-email")
+      navigate(redirectPath)
     } catch (error) {
       const errorMessage =
         error.response?.data?.message || "Could not send OTP!";
       toast.error(errorMessage, { id: toastId });
+    } finally {
+      toast.dismiss(toastId);
     }
   };
 }
@@ -39,7 +41,8 @@ export function signUp(
   password,
   confirmPassword,
   otp,
-  navigate
+  navigate,
+  redirectPath = "/login"
 ){
   return async(dispatch)=>{
     const toastId = toast.loading("Loading...");
@@ -60,15 +63,17 @@ export function signUp(
       }
       toast.success("Signup Successful", { id: toastId })
       dispatch(setSignupData({}));
-      navigate("/login")
+      navigate(redirectPath)
     } catch (error) {
       const errorMessage =
       error.response?.data?.message || "Could not send OTP!";
       toast.error(errorMessage, { id: toastId }); 
+    } finally {
+      toast.dismiss(toastId);
     }
   }
 }
-export function login(email,password,navigate){
+export function login(email,password,navigate,redirectPath = "/dashboard/my-profile"){
   return async(dispatch)=>{
     const toastId = toast.loading("Loading...")
     try {
@@ -76,7 +81,7 @@ export function login(email,password,navigate){
         email,
         password
       })
-      // console.log("res",res);
+      console.log("res",res);
       
       if(!res.data.success){
         toast.error(res?.message || "Login Failed",{id:toastId})
@@ -85,13 +90,29 @@ export function login(email,password,navigate){
       toast.success("Login Successful",{id:toastId})
       dispatch(setToken(res.data.token))
       localStorage.setItem("user", JSON.stringify(res.data.user))
-      navigate("/dashboard/my-profile")
+      navigate(redirectPath)
     } catch (error) {
-      console.log("res",error.response.data.message);
       const errorMessage =
       error.response?.data?.message || "Login Failed";
-      console.log(errorMessage);
-      
+      toast.error(errorMessage, { id: toastId }); 
+    }
+  }
+}
+export function sendPasswordResetMail(email,setEmailSent){
+  return async(dispatch)=>{
+    const toastId = toast.loading("Loading...")
+    try {
+      const res = await apiConnector("POST",RESETPASSTOKEN_API,{
+        email
+      })
+      if(!res?.data?.success){
+        throw new Error( res?.data?.message || "Something Went Wrong" )
+      }
+      toast.success(res?.data?.message || "Reset Email Sent",{id:toastId})
+      setEmailSent(true)
+    } catch (error) {
+      const errorMessage =
+      error.response?.data?.message || error.message || "Failed to send email for resetting password";
       toast.error(errorMessage, { id: toastId }); 
     }
   }
