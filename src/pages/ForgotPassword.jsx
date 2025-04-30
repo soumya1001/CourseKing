@@ -13,8 +13,6 @@ function ForgotPassword() {
 
   const handleOnSubmit = (e) => {
     e.preventDefault()
-    console.log("wdfwefewd");
-    
     dispatch(sendPasswordResetMail(email, setEmailSent))
   }
 

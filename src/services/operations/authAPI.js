@@ -7,7 +7,7 @@ const {
   SIGNUP_API,
   LOGIN_API,
   RESETPASSTOKEN_API,
-  // RESETPASSWORD_API
+  RESETPASSWORD_API
 } = authEndpoints;
 //redux thunk
 export function sendOtp(email, navigate,redirectPath = "/verify-email") {
@@ -24,10 +24,12 @@ export function sendOtp(email, navigate,redirectPath = "/verify-email") {
       }
       toast.success("OTP Sent Successfully", { id: toastId });
       navigate(redirectPath)
+      return true
     } catch (error) {
       const errorMessage =
         error.response?.data?.message || "Could not send OTP!";
       toast.error(errorMessage, { id: toastId });
+      return false
     } finally {
       toast.dismiss(toastId);
     }
@@ -114,6 +116,30 @@ export function sendPasswordResetMail(email,setEmailSent){
       const errorMessage =
       error.response?.data?.message || error.message || "Failed to send email for resetting password";
       toast.error(errorMessage, { id: toastId }); 
+    }
+  }
+}
+export function resetPassword(password,confirmPassword,token,setResetStatus,resetStatus){
+  return async(dispatch)=>{
+    const toastId = toast.loading("Loading...")
+    
+    try {
+      const res = await apiConnector("POST",RESETPASSWORD_API,{
+        password,
+        confirmPassword,
+        token
+      })
+      if(!res.data.success){
+        toast.error(res?.data?.message || "Password reset failed",{id:toastId})
+        return false
+      }
+      setResetStatus(true)
+      toast.success("Password reset successfull",{id:toastId})
+      return true
+    } catch (error) {
+      const errorMessage = error?.response?.data?.message || error.message || "Unable to reset password";
+      toast.error(errorMessage,{id:toastId});
+      return false
     }
   }
 }

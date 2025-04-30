@@ -50,40 +50,54 @@ exports.resetPassword = async (req, res) => {
 	try {
 		const { password, confirmPassword, token } = req.body;
 
-		if (confirmPassword !== password) {
-			return res.json({
+		// Validate input
+		if (!password || !confirmPassword || !token) {
+			return res.status(400).json({
 				success: false,
-				message: "Password and Confirm Password Does not Match",
+				message: "All fields are required",
 			});
 		}
-		const userDetails = await User.findOne({ token: token });
-		if (!userDetails) {
-			return res.json({
+
+		if (password !== confirmPassword) {
+			return res.status(400).json({
 				success: false,
-				message: "Token is Invalid",
+				message: "Password and confirm password do not match",
 			});
 		}
-		if (!(userDetails.resetPasswordExpires > Date.now())) {
-			return res.status(403).json({
+
+		const user = await User.findOne({ token });
+
+		if (!user) {
+			return res.status(404).json({
 				success: false,
-				message: `Token is Expired, Please Regenerate Your Token`,
+				message: "Invalid or expired token",
 			});
 		}
-		const encryptedPassword = await bcrypt.hash(password, 10);
-		await User.findOneAndUpdate(
-			{ token: token },
-			{ password: encryptedPassword },
-			{ new: true }
-		);
-		return res.json({
+
+		if (user.resetPasswordExpires < Date.now()) {
+			return res.status(410).json({
+				success: false,
+				message: "Token has expired. Please request a new one.",
+			});
+		}
+
+		const hashedPassword = await bcrypt.hash(password, 10);
+
+		user.password = hashedPassword;
+		user.token = undefined;
+		user.resetPasswordExpires = undefined;
+
+		await user.save();
+
+		return res.status(200).json({
 			success: true,
-			message: `Password Reset Successful`,
+			message: "Password reset successful",
 		});
 	} catch (error) {
-		return res.json({
-			error: error.message,
+		console.error("Error resetting password:", error);
+		return res.status(500).json({
 			success: false,
-			message: `Some Error in Updating the Password`,
+			message: "Server error while resetting password",
 		});
 	}
 };
