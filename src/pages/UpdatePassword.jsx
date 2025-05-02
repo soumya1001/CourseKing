@@ -30,7 +30,6 @@ function UpdatePassword() {
   const handleOnSubmit = (e) => {
     e.preventDefault()
     const token = location.pathname.split("/").at(-1)
-    console.log(resetStatus);
     dispatch(resetPassword(password, confirmPassword,token,setResetStatus))
   }
 
@@ -114,9 +113,9 @@ function UpdatePassword() {
                   <Link to="/login">
                     <button
                       type=""
-                      className="mt-6 w-full rounded-[8px] bg-yellow-50 py-[12px] px-[12px] font-medium text-richblack-900 inline-flex items-center justify-center gap-4"
+                      className="mt-6 w-full rounded-[8px] bg-yellow-50 py-[12px] px-[12px] font-medium text-richblack-900"
                     >
-                      <BiArrowBack />Back To Login
+                      Return To Login
                     </button>
                   </Link>
               )

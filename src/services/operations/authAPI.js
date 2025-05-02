@@ -1,6 +1,7 @@
 import { apiConnector } from "../apiConnector";
 import {toast} from "react-hot-toast";
 import {setToken,setLoading, setSignupData} from "../../slice/authSlice"
+import { setUser } from "../../slice/profileSlice";
 import {  authEndpoints} from "../apis";
 const {
   SENDOTP_API,
@@ -83,14 +84,14 @@ export function login(email,password,navigate,redirectPath = "/dashboard/my-prof
         email,
         password
       })
-      console.log("res",res);
-      
       if(!res.data.success){
         toast.error(res?.message || "Login Failed",{id:toastId})
         throw new Error( res?.message || "Login Failed")
       }
       toast.success("Login Successful",{id:toastId})
       dispatch(setToken(res.data.token))
+      dispatch(setUser(res.data.user))
+      localStorage.setItem("token", JSON.stringify(res.data.token))
       localStorage.setItem("user", JSON.stringify(res.data.user))
       navigate(redirectPath)
     } catch (error) {
@@ -119,8 +120,8 @@ export function sendPasswordResetMail(email,setEmailSent){
     }
   }
 }
-export function resetPassword(password,confirmPassword,token,setResetStatus,resetStatus){
-  return async(dispatch)=>{
+export function resetPassword(password,confirmPassword,token,setResetStatus){
+  return async(dispatch)=>{ //use or not we have to pass the dispatch to 
     const toastId = toast.loading("Loading...")
     
     try {
@@ -141,5 +142,16 @@ export function resetPassword(password,confirmPassword,token,setResetStatus,rese
       toast.error(errorMessage,{id:toastId});
       return false
     }
+  }
+}
+export function logout(navigate) {
+  return (dispatch) => {
+    dispatch(setToken(null))
+    dispatch(setUser(null))
+    // dispatch(resetCart())
+    localStorage.removeItem("token")
+    localStorage.removeItem("user")
+    toast.success("Logged Out")
+    navigate("/")
   }
 }

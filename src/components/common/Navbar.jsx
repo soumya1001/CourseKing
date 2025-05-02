@@ -4,13 +4,13 @@ import Logo from  "../../assets/Logo/Logo-Full-Light.png"
 import { NavbarLinks } from '../../data/navbar-links'
 import { useSelector } from 'react-redux'
 import { CiShoppingCart } from "react-icons/ci";
-import ProfileDropdown from '../core/auth/ProfileDropdown'
+import ProfileDropdown from '../core/auth/ProfileDropDown'
 import {apiConnector} from '../../services/apiConnector'
 import {categories} from '../../services/apis'
 import { MdKeyboardArrowDown } from "react-icons/md";
 function Navbar() {
-  const {token} = useSelector((state) => state.auth)
-  const {user} = useSelector((state) => state.profile)
+  const token = useSelector((state) => state.auth).token || JSON.parse(sessionStorage.getItem("token"))
+  const user = useSelector((state) => state.profile).user || JSON.parse(sessionStorage.getItem("user"))
   const {totalItems} = useSelector((state) => state.cart)
   const location = useLocation() 
   const [subLinks,setSubLinks] = useState([])
@@ -61,7 +61,7 @@ function Navbar() {
         </nav>
         <div className='flex flex-row gap-x-4 items-center'>
           {
-            user && user?.accountType !== "Instructor" && (
+            token && user && user?.accountType !== "Instructor" && (
               <Link to={"/dashboard/cart"}>
                 <CiShoppingCart />
                 {
