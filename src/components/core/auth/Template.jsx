@@ -7,7 +7,7 @@ function Template({title,description1,description2,image,formType}) {
   const { loading } = useSelector((state) => state.auth)
 
   return (
-    <div className='flex flex-col sm:flex-row justify-between gap-10 pt-8 sm:px-[13%] text-white'>
+    <div className='flex flex-col sm:flex-row justify-between gap-10 pt-8 sm:px-[40px] text-white'>
       {loading ? (
         <div className="spinner"></div>
       ) : (

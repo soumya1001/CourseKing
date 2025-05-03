@@ -39,7 +39,7 @@ function Home() {
             </div>
         </div>
         {/* section 2 */}
-        <div className='py-8 p-2 sm:px-[13%] flex sm:flex-row flex-col mx-auto items-center text-white justify-start gap-14'>
+        <div className='py-8 p-2 sm:px-[40px] flex sm:flex-row flex-col mx-auto items-center text-white justify-start gap-14'>
             <div className='sm:w-[50%] flex flex-col gap-4'>
                 <div className='text-3xl font-semibold'>
                     Unlock your <HighlightedText text={"coding potential"} /> with our online courses.
@@ -59,7 +59,7 @@ function Home() {
               {/* end */}
         </div>
         {/* section 3 */}
-        <div className='py-8 p-2 sm:px-[13%] flex-col-reverse flex sm:flex-row mx-auto items-center text-white justify-start gap-14'>
+        <div className='py-8 p-2 sm:px-[40px] flex-col-reverse flex sm:flex-row mx-auto items-center text-white justify-start gap-14'>
             {/* coding animation start */}
             <div className='shadow-[0_20px_50px_rgba(8,_112,_184,_0.7)] sm:w-[50%] w-[95%]'>
                 <CodeBlock  line_no={9} code={`<!DOCTYPE html> \n<head>\n<title>Example</title>\n<link rel="stylesheet"href="styles.css">\n</head>\n<body>\n<h1>Happy Coding!</h1>\n</body>\n</html>`} />
@@ -89,7 +89,7 @@ function Home() {
           </div>
 
         {/*  section job that is in demand */}
-        <div className='py-8 p-2 sm:px-[13%] bg-pure-greys-5 text-richblack-700'>
+        <div className='py-8 p-2 sm:px-[40px] bg-pure-greys-5 text-richblack-700'>
           <div className='flex sm:flex-row flex-col justify-center sm:gap-14'>
               <div className='pb-4 sm:w-[50%] text-3xl font-semibold'>Get the skills you need for a <HighlightedText text={"job that is in demand."} /></div>
               <div className='sm:w-[50%] flex flex-col'>
@@ -104,7 +104,7 @@ function Home() {
           </div>
         </div>
         {/* section learning any language */}
-        <div className='py-8 p-2 sm:px-[13%] bg-pure-greys-5 text-richblack-700 flex flex-col items-center content-center gap-14'>
+        <div className='py-8 p-2 sm:px-[40px] bg-pure-greys-5 text-richblack-700 flex flex-col items-center content-center gap-14'>
             <div className='flex flex-col pt-10 items-center content-center gap-5'>
                 <div className='text-3xl font-semibold'>
                     Your swiss knife for <HighlightedText text={"learning any language"} />
@@ -122,7 +122,7 @@ function Home() {
 
         </div>
         {/* Section Become an Instractor */}
-        <div className='py-8 p-2 sm:px-[13%] text-white flex sm:flex-row flex-col items-center content-center gap-14'>
+        <div className='py-8 p-2 sm:px-[40px] text-white flex sm:flex-row flex-col items-center content-center gap-14'>
             <div className='sm:w-[50%]'>
                 <img className='shadow-[-10px_-10px_0px_0px_rgba(255,255,255)]' src={instractorImage} alt="" />
             </div>
@@ -139,7 +139,7 @@ function Home() {
             </div>
         </div>
         {/* sections testimonials */}
-        <div className='py-8 p-2 sm:px-[13%] text-white'>
+        <div className='py-8 p-2 sm:px-[40px] text-white'>
             <h2 className='text-3xl font-semibold text-center'>Reviews from other learners</h2>
             <div>
 

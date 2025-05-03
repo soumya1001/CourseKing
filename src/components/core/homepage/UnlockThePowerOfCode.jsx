@@ -13,7 +13,7 @@ function UnlockThePowerOfCode() {
         setCurrentCard(newTabObj[0].courses[0].heading)
     }
   return (
-      <div className='py-8 p-2 sm:px-[13%] flex flex-col mx-auto items-center text-white justify-start gap-10'>
+      <div className='py-8 p-2 sm:px-[30px] flex flex-col mx-auto items-center text-white justify-start gap-10'>
           <div>
               <h1 className='font-semibold text-3xl text-center'>
                   Unlock the <HighlightedText text={"Power of Code"} />
