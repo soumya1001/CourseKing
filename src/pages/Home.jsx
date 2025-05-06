@@ -25,7 +25,7 @@ function Home() {
             <div className='font-semibold text-3xl text-center'>
                 Empower Your Future with <HighlightedText text={"Coding Skill"}/> 
             </div>
-            <div className='sm:w-[80%] text-sx text-center text-richblack-200'>
+            <div className='sm:w-[80%] font-semibold text-sx text-center text-richblack-200'>
             With our online coding courses, you can learn at your own pace, from anywhere in the world, and get access to a wealth of resources, including hands-on projects, quizzes, and personalized feedback from instructors. 
             </div>
             <div className='flex sm:flex-row flex-col gap-4'>
@@ -145,7 +145,6 @@ function Home() {
 
             </div>
         </div>
-        <Footer/>
     </div>
   )
 }
